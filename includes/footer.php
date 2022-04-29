@@ -1,5 +1,5 @@
 <footer>
-    <p> (c) CrsMgr Group-work Assistant (CGA) | Comp5531/Group_4 Winter/Spring 2022</p>
+    <p>CrsMgr Group-Work Assistant (CGA) | COMP 5531 | Winter 2022 | <b>Developed by Shafiq Imtiaz</b></p>
 </footer>
 
 </body>
