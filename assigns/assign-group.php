@@ -320,7 +320,7 @@ Always visible and shows delete error if delete_view is set true -->
                     <p>Groups</p>
                     <div class="scroll-list">
 
-                        <select name="add_group_id" id="group_id">
+                        <select name="group_id" id="group_id">
                             <option value="" selected hidden>Choose a group</option>
                             <?php
 
@@ -330,9 +330,10 @@ Always visible and shows delete error if delete_view is set true -->
                                 echo "<option value='$group_id'>$group_name ($course_name)</option>";
                             } else {
                                 $query = "SELECT * FROM student_groups as g
-                                            JOIN group_of_course as gc ON gc.group_id = g.group_id
-                                            JOIN course as c ON c.course_id = gc.course_id
-                                            WHERE c.course_id = '$course_id_selected'";
+                                JOIN group_of_course as gc ON gc.group_id = g.group_id
+                                JOIN course as c ON c.course_id = gc.course_id
+                                
+                                WHERE c.course_id = '$course_id_selected'";
 
                                 $groups = mysqli_query($conn, $query);
                                 foreach ($groups as $row) {
