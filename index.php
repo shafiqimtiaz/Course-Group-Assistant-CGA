@@ -34,7 +34,7 @@ $role_id = $_SESSION['role_id'];
 
     <header>
         <div class="title-bar">
-            <h1>Welcome to CGA</h1>
+            <h1>Course Group Assistant (CGA)</h1>
             <nav>
                 <div class="header-minimum">
                     <p>Logged in as <b><?= $name ?></b></p>
