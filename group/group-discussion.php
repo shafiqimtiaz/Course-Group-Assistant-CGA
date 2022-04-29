@@ -280,21 +280,26 @@ if (isset($_GET['delete_id'])) {
 
         $id = mysqli_real_escape_string($conn, $_GET['update_id']);
         $query = "SELECT d.*, u.username, g.group_name, c.course_name FROM discussion as d
-            JOIN users as u ON u.user_id = d.posted_by_uid
-            JOIN student_groups as g ON g.group_id = d.group_id
-            JOIN group_of_course as gc ON gc.group_id = g.group_id
-            JOIN course as c ON c.course_id = gc.course_id
-            WHERE d.discussion_id='$id'
-            ORDER BY discussion_id ASC";
+        JOIN users as u ON u.user_id = d.posted_by_uid
+        JOIN student_groups as g ON g.group_id = d.group_id
+        JOIN group_of_course as gc ON gc.group_id = g.group_id
+        JOIN course as c ON c.course_id = gc.course_id
+        WHERE d.discussion_id='$id'
+        ORDER BY discussion_id ASC";
         $results = mysqli_query($conn, $query);
 
-        foreach ($results as $row) {
-            $id = $row['discussion_id'];
-            $title = $row['discussion_title'];
-            $content = $row['discussion_content'];
-            $group_name = $row['group_name'];
-            $course_name = $row['course_name'];
+        if (mysqli_num_rows($results) > 0) {
+            foreach ($results as $row) {
+                $id = $row['discussion_id'];
+                $title = $row['discussion_title'];
+                $content = $row['discussion_content'];
+                $group_name = $row['group_name'];
+                $course_name = $row['course_name'];
+            }
+        } else {
+            $id = $title = $content = $group_name = $course_name = "";
         }
+
 
     ?>
 

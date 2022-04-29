@@ -249,12 +249,17 @@ if (isset($_GET['delete_id'])) {
             WHERE a.announcement_id='$id'";
             $results = mysqli_query($conn, $query);
 
-            foreach ($results as $row) {
-                $id = $row['announcement_id'];
-                $title = $row['announcement_title'];
-                $content = $row['announcement_content'];
-                $course_name = $row['course_name'];
+            if (mysqli_num_rows($results) > 0) {
+                foreach ($results as $row) {
+                    $id = $row['announcement_id'];
+                    $title = $row['announcement_title'];
+                    $content = $row['announcement_content'];
+                    $course_name = $row['course_name'];
+                }
+            } else {
+                $id = $title = $content = $course_name = "";
             }
+
             ?>
 
             <hr>

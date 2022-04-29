@@ -135,12 +135,16 @@ if (isset($_GET['delete_id'])) {
         WHERE grade_id='$id'";
         $results = mysqli_query($conn, $query);
 
-        foreach ($results as $row) {
-            $grade = $row['grade'];
-            $student_id = $row['student_id'];
-            $student_name = $row['first_name'] . " " . $row['last_name'];
-            $task_content = $row['task_content'];
-            $solution_content = $row['solution_content'];
+        if (mysqli_num_rows($results) > 0) {
+            foreach ($results as $row) {
+                $grade = $row['grade'];
+                $student_id = $row['student_id'];
+                $student_name = $row['first_name'] . " " . $row['last_name'];
+                $task_content = $row['task_content'];
+                $solution_content = $row['solution_content'];
+            }
+        } else {
+            $grade = $student_id = $student_name = $task_content = $solution_content = "";
         }
         ?>
 

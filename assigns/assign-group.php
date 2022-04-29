@@ -403,13 +403,18 @@ Always visible and shows delete error if delete_view is set true -->
 
         $results = mysqli_query($conn, $query);
 
-        foreach ($results as $row) {
-            $student_name = $row['first_name'] . " " . $row['last_name'];
-            $user_id = $row['user_id'];
-            $course_id = $row['course_id'];
-            $course_name = $row['course_name'];
-            $update_group_id = $row['group_id'];
+        if (mysqli_num_rows($results) > 0) {
+            foreach ($results as $row) {
+                $student_name = $row['first_name'] . " " . $row['last_name'];
+                $user_id = $row['user_id'];
+                $course_id = $row['course_id'];
+                $course_name = $row['course_name'];
+                $update_group_id = $row['group_id'];
+            }
+        } else {
+            $student_name = $user_id = $course_id = $course_name = $update_group_id = "";
         }
+
         ?>
 
         <div class="form-container">

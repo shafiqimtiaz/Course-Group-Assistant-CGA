@@ -146,11 +146,16 @@ if (isset($_GET['delete_id'])) {
             $query = "SELECT * FROM course WHERE course_id='$id'";
             $results = mysqli_query($conn, $query);
 
-            foreach ($results as $row) {
-                $id = $row['course_id'];
-                $course_name = $row['course_name'];
-                $course_number = $row['course_number'];
+            if (mysqli_num_rows($results) > 0) {
+                foreach ($results as $row) {
+                    $id = $row['course_id'];
+                    $course_name = $row['course_name'];
+                    $course_number = $row['course_number'];
+                }
+            } else {
+                $id = $course_name = $course_number = "";
             }
+
             ?>
 
             <hr>

@@ -90,7 +90,6 @@ if (isset($_GET['delete_id'])) {
     $delete = "DELETE FROM reply WHERE reply_id='$id'";
     $file_id = $_GET['delete_file'];
     if (mysqli_query($conn, $delete)) {
-        header("location: ?page=course-reply&forum_id=$session_forum_id");
         delete_file($file_id);
     } else {
         array_push($errors, "Error deleting " . mysqli_error($conn));
@@ -181,15 +180,18 @@ if (isset($_GET['delete_id'])) {
         $id = mysqli_real_escape_string($conn, $_GET['update_id']);
 
         $query = "SELECT * FROM reply as c
-            WHERE c.reply_id = '$id'
-            ORDER BY c.reply_id ASC";
-        $replys = mysqli_query($conn, $query);
+        WHERE c.reply_id = '$id'
+        ORDER BY c.reply_id ASC";
+        $results = mysqli_query($conn, $query);
 
-        foreach ($replys as $row) {
-            $content = $row['reply_content'];
+        if (mysqli_num_rows($results) > 0) {
+            foreach ($results as $row) {
+                $content = $row['reply_content'];
+            }
+        } else {
+            $content = "";
         }
 
-        var_dump($_GET['update_file']);
     ?>
 
         <div class="form-container">

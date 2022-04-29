@@ -12,7 +12,6 @@ if (isset($_GET['delete_id'])) {
     $file_id = $_GET['delete_file'];
     if (mysqli_query($conn, $delete)) {
         delete_file($file_id);
-        array_push($success, "Delete successful");
     } else {
         array_push($errors, "Error deleting " . mysqli_error($conn));
     }

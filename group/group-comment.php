@@ -178,13 +178,19 @@ if (isset($_GET['delete_id'])) {
         $id = mysqli_real_escape_string($conn, $_GET['update_id']);
 
         $query = "SELECT * FROM comment as c
-            WHERE c.comment_id = '$id'
-            ORDER BY c.comment_id ASC";
-        $comments = mysqli_query($conn, $query);
+        WHERE c.comment_id = '$id'
+        ORDER BY c.comment_id ASC";
+        $results = mysqli_query($conn, $query);
 
-        foreach ($comments as $row) {
-            $content = $row['comment_content'];
+        if (mysqli_num_rows($results) > 0) {
+            foreach ($results as $row) {
+                $content = $row['comment_content'];
+            }
+        } else {
+            $content = "";
         }
+
+
     ?>
 
         <div class="form-container">

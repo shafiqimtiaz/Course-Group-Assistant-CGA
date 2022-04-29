@@ -124,13 +124,9 @@ if (isset($_POST['update_solution'])) {
 if (isset($_GET['delete_id'])) {
     $id = mysqli_real_escape_string($conn, $_GET['delete_id']);
     $delete = "DELETE FROM solution WHERE solution_id='$id'";
-
     $file_id = $_GET['delete_file'];
-
     if (mysqli_query($conn, $delete)) {
         delete_file($file_id);
-        array_push($success, "Delete successful");
-        header("location: ?page=group-solution&course_id=$session_course_id&group_id=$session_group_id");
     } else {
         array_push($errors, "Delete error: " . mysqli_error($conn));
     }
@@ -381,12 +377,15 @@ if (isset($_POST['add_grade'])) {
             <?php
             $solution_id = mysqli_real_escape_string($conn, $_GET['update_id']);
             $query = "SELECT * FROM solution WHERE solution_id='$solution_id'";
-
             $results = mysqli_query($conn, $query);
 
-            foreach ($results as $row) {
-                $solution_type = $row['solution_type'];
-                $solution_content = $row['solution_content'];
+            if (mysqli_num_rows($results) > 0) {
+                foreach ($results as $row) {
+                    $solution_type = $row['solution_type'];
+                    $solution_content = $row['solution_content'];
+                }
+            } else {
+                $solution_type = $solution_content = "";
             }
 
             ?>

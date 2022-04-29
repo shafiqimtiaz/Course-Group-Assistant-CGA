@@ -335,13 +335,17 @@ if (isset($_GET['delete_id'])) {
             $query = "SELECT * FROM users WHERE user_id='$user_id'";
             $results = mysqli_query($conn, $query);
 
-            foreach ($results as $row) {
-                $first_name = $row['first_name'];
-                $last_name = $row['last_name'];
-                $dob = $row['dob'];
-                $email = $row['email'];
-                $username = $row['username'];
-                $update_role_id = $row['role_id'];
+            if (mysqli_num_rows($results) > 0) {
+                foreach ($results as $row) {
+                    $first_name = $row['first_name'];
+                    $last_name = $row['last_name'];
+                    $dob = $row['dob'];
+                    $email = $row['email'];
+                    $username = $row['username'];
+                    $update_role_id = $row['role_id'];
+                }
+            } else {
+                $first_name = $last_name = $dob = $email = $username = $update_role_id = "";
             }
             ?>
             <hr>

@@ -409,13 +409,18 @@ Always visible and shows delete error if delete_view is set true -->
 
         $results = mysqli_query($conn, $query);
 
-        foreach ($results as $row) {
-            $ta_name = $row['first_name'] . " " . $row['last_name'];
-            $user_id = $row['user_id'];
-            $course_id = $row['course_id'];
-            $course_name = $row['course_name'];
-            $update_section_name = $row['section_name'];
+        if (mysqli_num_rows($results) > 0) {
+            foreach ($results as $row) {
+                $ta_name = $row['first_name'] . " " . $row['last_name'];
+                $user_id = $row['user_id'];
+                $course_id = $row['course_id'];
+                $course_name = $row['course_name'];
+                $update_section_name = $row['section_name'];
+            }
+        } else {
+            $ta_name = $user_id = $course_id = $course_name = $update_section_name = "";
         }
+
 
         ?>
 

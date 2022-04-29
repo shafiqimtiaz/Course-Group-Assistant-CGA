@@ -129,8 +129,6 @@ if (isset($_GET['delete_id'])) {
 
     if (mysqli_query($conn, $delete)) {
         delete_file($file_id);
-        header("location: ?page=course-task&course_id=$session_course_id");
-        array_push($success, "Delete successful");
     } else {
         array_push($errors, "Delete error: " . mysqli_error($conn));
     }
@@ -316,16 +314,20 @@ if (isset($_GET['delete_id'])) {
             <?php
             $task_id = mysqli_real_escape_string($conn, $_GET['update_id']);
             $query = "SELECT * FROM task WHERE task_id='$task_id'";
-
             $results = mysqli_query($conn, $query);
 
-            foreach ($results as $row) {
-                $task_type = $row['task_type'];
-                $task_content = $row['task_content'];
+            if (mysqli_num_rows($results) > 0) {
+                foreach ($results as $row) {
+                    $task_type = $row['task_type'];
+                    $task_content = $row['task_content'];
 
-                //converting date to dd/mm/yyyy - for display
-                $task_deadline = date('Y-m-d', strtotime($row['task_deadline']));
+                    //converting date to dd/mm/yyyy - for display
+                    $task_deadline = date('Y-m-d', strtotime($row['task_deadline']));
+                }
+            } else {
+                $task_type = $task_content = $task_deadline = "";
             }
+
 
             ?>
 

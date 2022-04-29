@@ -13,7 +13,6 @@ if (isset($_GET['delete_id'])) {
     $delete = "DELETE FROM solution WHERE solution_id='$id'";
     if (mysqli_query($conn, $delete)) {
         delete_file($_GET['file_id']);
-        array_push($success, "Delete successful");
     } else {
         array_push($errors, "Error deleting " . mysqli_error($conn));
     }

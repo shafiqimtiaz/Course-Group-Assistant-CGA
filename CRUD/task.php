@@ -8,9 +8,9 @@ if (isset($_GET['download_file'])) {
 if (isset($_GET['delete_id'])) {
     $id = mysqli_real_escape_string($conn, $_GET['delete_id']);
     $delete = "DELETE FROM task WHERE task_id='$id'";
+    $file_id = $_GET['file_id'];
     if (mysqli_query($conn, $delete)) {
-        delete_file($_GET['file_id']);
-        array_push($success, "Delete successful");
+        delete_file($file_id);
     } else {
         array_push($errors, "Error deleting " . mysqli_error($conn));
     }

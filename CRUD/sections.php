@@ -158,11 +158,16 @@ ORDER BY section_id ASC";
             $query = "SELECT * FROM section WHERE section_id='$id'";
             $results = mysqli_query($conn, $query);
 
-            foreach ($results as $row) {
-                $id = $row['section_id'];
-                $section_name = $row['section_name'];
-                $update_course_id = $row['course_id'];
+            if (mysqli_num_rows($results) > 0) {
+                foreach ($results as $row) {
+                    $id = $row['section_id'];
+                    $section_name = $row['section_name'];
+                    $update_course_id = $row['course_id'];
+                }
+            } else {
+                $id = $section_name = $update_course_id = "";
             }
+
             ?>
 
             <hr>

@@ -143,11 +143,16 @@ if (isset($_GET['delete_id'])) {
             $query = "SELECT * FROM roles WHERE role_id='$id'";
             $results = mysqli_query($conn, $query);
 
-            foreach ($results as $row) {
-                $id = $row['role_id'];
-                $role_name = $row['role_name'];
-                $role_description = $row['role_description'];
+            if (mysqli_num_rows($results) > 0) {
+                foreach ($results as $row) {
+                    $id = $row['role_id'];
+                    $role_name = $row['role_name'];
+                    $role_description = $row['role_description'];
+                }
+            } else {
+                $id = $role_name = $role_description = "";
             }
+
             ?>
 
             <hr>

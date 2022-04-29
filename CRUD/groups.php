@@ -275,13 +275,18 @@ if (isset($_POST["course_id"])) {
             WHERE g.group_id='$group_id'";
             $results = mysqli_query($conn, $query);
 
-            foreach ($results as $row) {
-                $group_id = $row['group_id'];
-                $group_name = $row['group_name'];
-                $group_leader_sid = $row['group_leader_sid'];
-                $course_id = $row['course_id'];
-                $course_name = $row['course_name'];
+            if (mysqli_num_rows($results) > 0) {
+                foreach ($results as $row) {
+                    $group_id = $row['group_id'];
+                    $group_name = $row['group_name'];
+                    $group_leader_sid = $row['group_leader_sid'];
+                    $course_id = $row['course_id'];
+                    $course_name = $row['course_name'];
+                }
+            } else {
+                $group_id = $group_name = $group_leader_sid = $course_id = $course_name = "";
             }
+
 
             ?>
 

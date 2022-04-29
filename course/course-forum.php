@@ -219,18 +219,23 @@ if (isset($_GET['delete_id'])) {
 
         $id = mysqli_real_escape_string($conn, $_GET['update_id']);
         $query = "SELECT f.*, u.username, c.course_name FROM forum as f
-            JOIN users as u ON u.user_id = f.posted_by_uid
-            JOIN course as c ON c.course_id = f.course_id
-            WHERE f.forum_id='$id'
-            ORDER BY forum_id ASC";
+        JOIN users as u ON u.user_id = f.posted_by_uid
+        JOIN course as c ON c.course_id = f.course_id
+        WHERE f.forum_id='$id'
+        ORDER BY forum_id ASC";
         $results = mysqli_query($conn, $query);
 
-        foreach ($results as $row) {
-            $id = $row['forum_id'];
-            $title = $row['forum_title'];
-            $content = $row['forum_content'];
-            $course_name = $row['course_name'];
+        if (mysqli_num_rows($results) > 0) {
+            foreach ($results as $row) {
+                $id = $row['forum_id'];
+                $title = $row['forum_title'];
+                $content = $row['forum_content'];
+                $course_name = $row['course_name'];
+            }
+        } else {
+            $id = $title = $content = $course_name = "";
         }
+
 
     ?>
 

@@ -163,13 +163,18 @@ if (isset($_GET['delete_id'])) {
     <?php if (isset($_GET['update_view'])) {
         $id = mysqli_real_escape_string($conn, $_GET['update_id']);
         $query = "SELECT * FROM messages as m
-            WHERE m.message_id = '$id'
-            ORDER BY m.message_id ASC";
-        $messages = mysqli_query($conn, $query);
+        WHERE m.message_id = '$id'
+        ORDER BY m.message_id ASC";
+        $results = mysqli_query($conn, $query);
 
-        foreach ($messages as $row) {
-            $content = $row['message_content'];
+        if (mysqli_num_rows($results) > 0) {
+            foreach ($results as $row) {
+                $content = $row['message_content'];
+            }
+        } else {
+            $content = "";
         }
+
     ?>
         <div class="form-container">
             <form class="form-body" action="" enctype="multipart/form-data" method="POST" onSubmit="return validateMessage()">

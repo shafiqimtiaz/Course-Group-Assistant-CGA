@@ -111,14 +111,18 @@
             <?php
             $id = mysqli_real_escape_string($conn, $_GET['update_file']);
             $query = "SELECT * FROM files WHERE file_id='$id'";
-
             $results = mysqli_query($conn, $query);
 
-            foreach ($results as $row) {
-                $id = $row['file_id'];
-                $file_name = $row['file_name'];
-                $content = $row['file_content'];
+            if (mysqli_num_rows($results) > 0) {
+                foreach ($results as $row) {
+                    $id = $row['file_id'];
+                    $file_name = $row['file_name'];
+                    $content = $row['file_content'];
+                }
+            } else {
+                $id = $file_name = $content = "";
             }
+
 
             ?>
 
