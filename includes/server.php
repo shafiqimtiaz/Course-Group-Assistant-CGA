@@ -43,7 +43,9 @@ function upload_file($table)
                                 VALUES('$file_name', '$content', '$extension', $size, $session_user_id, NOW())";
             if (mysqli_query($conn, $query)) {
                 array_push($success, "File uploaded successfully");
+                ob_start();
                 header("location: {$_SERVER['HTTP_REFERER']}");
+                ob_end_flush();
                 return $conn->insert_id;
                 exit();
             }
@@ -75,9 +77,13 @@ function download_file($id)
         header('Pragma: public');
         header('Expires: 0');
 
+        ob_start();
         ob_clean();
         flush();
+        
         readfile($filepath);
+        
+        ob_end_flush();
         exit();
     }
 }
@@ -139,7 +145,9 @@ function update_file($table, $id)
             $query = "UPDATE files SET file_name='$file_name', file_content='$content', file_type='$extension', file_size=$size WHERE file_id=$id";
             if (mysqli_query($conn, $query)) {
                 array_push($success, "File updated successfully");
+                ob_start();
                 header("location: {$_SERVER['HTTP_REFERER']}");
+                ob_end_flush();
                 exit();
             }
         } else {
@@ -163,7 +171,9 @@ function delete_file($id)
         if (mysqli_query($conn, $delete)) {
             unlink($filepath);
             array_push($success, "Delete successful");
+            ob_start();
             header("location: {$_SERVER['HTTP_REFERER']}");
+            ob_end_flush();
             exit();
         }
     } else {
