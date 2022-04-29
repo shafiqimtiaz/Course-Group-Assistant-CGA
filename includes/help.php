@@ -36,9 +36,9 @@ $role_id = $_SESSION['role_id'];
             <ul>
                 <li>You have all access!</li>
                 <br>
-                <li>Relational Schema<img src="../files/CGA Schema.png" alt="schema"></li>
+                <li><u>Relational Schema</u> <img src="../files/CGA Schema.png" alt="schema"></li>
                 <br>
-                <li>ER Diagram<img src="../files/CGA ER Diagram.png" alt="diagram"></li>
+                <li><u>ER Diagram</u><img src="../files/CGA ER Diagram.png" alt="diagram"></li>
             </ul>
         </div>
     <?php } ?>

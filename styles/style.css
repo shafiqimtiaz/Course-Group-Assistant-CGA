@@ -6,7 +6,7 @@
 
 body {
     background-color: #faf0e6;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Arial', sans-serif;
     font-size: large;
 }
 
@@ -86,9 +86,10 @@ nav li:hover {
     background-color: #ff92a4;
 }
 
-nav li a {
+nav ul li a {
     text-decoration: none;
     color: black;
+    display: block;
 }
 
 /**********************************************/
@@ -197,6 +198,10 @@ td {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+tbody tr:hover {
+    background-color: #fcd9b6;
 }
 
 button {
