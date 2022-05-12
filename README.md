@@ -3,7 +3,7 @@ A comprehensive course group manager based on PHP and MySQL
 
 http://cga-crsmgr.000webhostapp.com/
 
-Admin Account Credintials
+Admin Account Credintials:
 - username: admin
 - password: admin
 
