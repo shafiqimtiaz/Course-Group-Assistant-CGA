@@ -1,7 +1,7 @@
 # Course Group Assistant (CGA)
 A comprehensive course group manager based on PHP and MySQL
 
-Link -> http://cga-crsmgr.000webhostapp.com/
+http://cga-crsmgr.000webhostapp.com/
 
 Admin Account Credintials
 - username: admin
